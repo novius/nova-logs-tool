@@ -41,7 +41,7 @@
             >
                 <ToolbarButton
                     @click.prevent="getLogs"
-                    type="refresh"
+                    type="arrow-path"
                     v-tooltip="__('Refresh')"
                 />
 
@@ -61,7 +61,7 @@
                 <ToolbarButton
                     v-if="files.length && file && permissions.canDownload"
                     @click.prevent="download"
-                    type="download"
+                    type="arrow-down-tray"
                     v-tooltip="__('Download')"
                 />
 
@@ -75,7 +75,7 @@
                 <ToolbarButton
                     v-if="files.length && file"
                     @click.prevent="cacheClear"
-                    type="database"
+                    type="circle-stack"
                     v-tooltip="__('Cache Clear')"
                 />
             </div>
@@ -97,7 +97,7 @@
                     :type="!item.selected ? 'gray' : ''"
                 >
                     <Icon
-                        :type="icons[item.level.value || 'error']"
+                        :name="icons[item.level.value || 'error']"
                         view-box="0 0 24 24"
                         width="18"
                         height="18"
@@ -170,7 +170,7 @@
                                         class="px-2 py-2 border-t border-gray-100 dark:border-gray-700 whitespace-nowrap cursor-pointer dark:bg-gray-800 group-hover:bg-gray-50 dark:group-hover:bg-gray-900"
                                     >
                                         <Icon
-                                            :type="
+                                            :name="
                                                 icons[
                                                     log.level.value || 'error'
                                                 ]
@@ -224,7 +224,7 @@
                                     >
                                         <span @click="viewLog(log)">
                                             <Icon
-                                                type="eye"
+                                                name="eye"
                                                 view-box="0 0 24 24"
                                                 width="24"
                                                 height="24"
@@ -241,7 +241,7 @@
                         class="flex flex-col justify-center items-center px-6 py-8"
                     >
                         <Icon
-                            type="search"
+                            name="search"
                             class="mb-3 text-gray-300 dark:text-gray-500"
                             width="50"
                             height="50"
@@ -342,7 +342,7 @@
 
                 <div class="flex items-center text-lg font-bold mb-5">
                     <Icon
-                        :type="icons[showLog.level.value || 'error']"
+                        :name="icons[showLog.level.value || 'error']"
                         view-box="0 0 24 24"
                         width="32"
                         height="32"
@@ -435,6 +435,7 @@ import api from "../api";
 import Button from "../components/Button.vue";
 import ToolbarButton from "../components/ToolbarButton.vue";
 import { DateTime } from "luxon";
+import { Icon } from 'laravel-nova-ui';
 
 const loading = ref(true);
 const playing = ref(false);
